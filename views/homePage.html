@@ -1,0 +1,103 @@
+<! DOCTYPE html>
+<html>
+	<head>
+		<link rel="shortcut icon" href="/images/title.png" type="image/png">
+		<title>Electronics, Cars, Fashion, Collectibles, Coupons and More | eBay</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/stylesheets/header_style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="scripts/homePage.js"></script>
+		<script type="text/javascript" src="scripts/addtocartPage.js"></script>
+	</head>	
+	</head>	
+	<body ng-app="homePageApp">
+		<div  ng-controller="homePageCtrl">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="well">					
+					<div style="float:left" class="b">Hi!&nbsp;
+					<span ng-model="sign_reg">
+					<a href="profile.html?user_name={{user_name}}"> {{user_name}} </a>&nbsp;!
+					</span>
+					<span ng-show=false>
+					</span>
+					&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;
+					<a href=""> Daily Deals </a> &nbsp;| &nbsp;<a href=""> Gift cards </a> &nbsp;| &nbsp;
+					<a href="sellPage_1.html?user_name={{user_name}}"> Sell </a> &nbsp;| &nbsp;
+					<a href="""> Help & Contact </a>
+					&nbsp;
+					</div>	
+					&nbsp;
+					<div style="float:right" class="c">
+					<a href="index.html" style="text-decoration:none"> Sign Out </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="" style="text-decoration:none"> My eBay </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href=""><img src="/images/bell.png" class="a"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="userCartPage.html?username={{user_name}}"><img src="/images/cart.png" class="a"></a></div>
+					<br>&nbsp;
+					</div>
+					<div>
+						<a href="homePage.html?username={{user_name}}"><img src="/images/logo.png" style="padding-left:75px"></a>
+						<button class="btn btn-default" style="background:transparent;border:none"><a href="" style=";color:inherit">
+						Shop by<br>category</a></button>
+						<input type="text" name="searchBar_main" placeholder="Search..."/ style="width:630px;height:45px;font-size:17px;padding-left:10px">
+						<select style="height:45px;font-size:17px;width:175px;font-size:12px">
+							<option>All Categories</option>
+							<option>Clothing</option>
+							<option>Accessories</option>
+							<option>Electronics</option>
+							<option>Furniture</option>		
+						</select>
+						<button class="btn btn-primary" style="height:45px;width:100px;font-size:16px;background-color:#3E5EA8">Search</button> &nbsp;&nbsp;
+						<a href="" style="text-decoration:none">Advanced</a>
+					</div>
+					<br><br>
+					
+					
+					
+					
+					<div style="float:left;width:180px;height:3000px;background-color:#f5f5f5;padding-left:10px">
+					<h5><b>Categories</b></h5>
+					<ul style="list-style: none;">
+						<li>Clothing</li>
+						<li>Accessories</li>
+						<li>Electronics</li>
+						<li>Furniture</li>
+					</ul>
+					</div>
+					<div style="float:right;width:100px;background-color:#f5f5f5">
+					Advertisements
+					</div>
+					<div style="background-color:#ffffff;width:1050px">
+						<table>
+							<tr ng-repeat="item_detail in itemDescription">
+		    					<td>
+	    							<img src = "/images/na_image.png" style="float:left;width:150px;height:100px"/>
+			    					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    					<div  style="float:right;width:400px">
+			    					{{item_detail.item_name}}
+			    					<br>
+			    					{{item_detail.item_desc}}
+			    					<br>
+			    					{{item_detail.seller_info}}
+			    					<br>
+			    					$ {{item_detail.item_price}} 
+									<br>
+			    					{{item_detail.item_quantity}} 
+			    					<br><br><br><br>
+			    					
+<!-- 			    					<button class="btn btn-primary" ng-click="addToCart(item_detail.item_id)">Add to cart</button> -->
+			    					<a class="btn btn-primary" href="/addtocartPage.html?itemId={{item_detail.item_id}}&username={{user_name}}">Add to cart</a>
+			    					<hr>
+			    					</div>
+		    					</td>
+		    				</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		&nbsp;
+	</body>
+</html>

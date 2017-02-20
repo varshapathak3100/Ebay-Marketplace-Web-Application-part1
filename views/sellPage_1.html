@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+		<link rel="shortcut icon" href="/images/title.png" type="image/png">
+		<title>eBay > Tell us what you're selling</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script type="text/javascript" src="scripts/sellPage_1.js"></script>
+		<script type="text/javascript" src="scripts/homePage.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body style="padding-left:15px"  ng-app="sellPage_1_App">
+	<div ng-controller="sellPage_1_Ctrl">
+	<div>
+		<a href="homePage.html?username={{user_name}}"><img src="/images/ebay_sell.png" style="height:90px;width:170px;padding-top:8px"/></a>
+	</div>
+	<h2 style="font-family:">
+	Tell us what you're selling 
+	</h2><hr>
+	<h4>
+	Enter item details<br><br>
+	</h4>
+	<form style="border: 2px solid #3E5EA8;width:800px;padding:40px;">
+	  <div class="form-group">
+  		<label>Select category</label><br>
+  		<select ng-model="categoryItem">
+			<option>Category</option>
+			<option>Clothing</option>
+			<option>Accessories</option>
+			<option>Electronics</option>
+			<option>Furniture</option>
+		</select>
+		<p class="emsg">{{g}}<p>
+		</div>
+	  <div class="form-group">
+		<label>Item name</label><br>
+		<input type="text" placeholder="Laptop" class="a" ng-model="itemName"><br>
+		<p class="emsg">{{f}}<p>
+	  </div>
+	  <div class="form-group">
+		<label>Item description</label><br>
+		<input type="" placeholder="2.2 GHz Core 2 Duo, 2GB RAM..."  class="a" ng-model="itemDesc" required><br>
+		<p class="emsg">{{b}}<p>
+		</div>
+	  <div class="form-group">	
+		<label>Seller information</label><br>
+		<input type="" placeholder="John Smith, shipping from NY"  class="a" ng-model="sellerInfo" required><br>
+		<p class="emsg">{{c}}<p>
+	  </div>
+	  <div class="form-group">
+		<label>Item price</label><br>
+		$ <input type="text" placeholder="600"  class="a" ng-model="itemPrice"><br>
+		<p class="emsg">{{d}}<p>
+	</div>
+	  <div class="form-group">
+		<label>Item quantity</label><br>
+		<input type="text" placeholder="4 pieces"  class="a" ng-model="itemQuantity">
+		<p class="emsg">{{e}}<p>
+	</div>
+	<input type="button" value="Fix Price" class="btn btn-primary" ng-click ="fixPrice()" />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="button" value="Bid"class="btn btn-primary" />
+	</form>
+	<style type="text/css">
+		.a{
+			width: 700px;
+			height: 40px;
+			font-size: 15px;
+		}
+		.emsg{
+			color: #B22222 ;
+			font-size: 12px;
+		}
+	</style>
+	</div>
+</body>
+</html>

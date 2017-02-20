@@ -1,0 +1,193 @@
+<! DOCTYPE html>
+<html>
+	<head>
+		<link rel="shortcut icon" href="/images/title.png" type="image/png">
+		<title>
+		Sign in or Register | eBay
+		</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>	
+	<body ng-app="signinPageApp" style="background:#F5F5F5">
+	 <div class="container"> 
+		<div ng-controller="signinPageCtrl" class="row">
+		<div  class="mainbox col-md-5 col-md-offset-3 col-sm-8 col-sm-offset-2">
+			<form class="form-group">
+				<img src="/images/logo.png"><br>
+				<div class="panel panel-default">
+				<br>
+					<input type="button" ng-model="signin_tab" value="Sign in" ng-click="s_tab()" class="btn btn-default btn-lg"  id="c" style="background: url('/images/next.png') no-repeat left" />
+					<input type="button" ng-model="register_tab" value="Register" ng-click="r_tab()" class="btn btn-default btn-lg" id="c" style="background: url('/images/plus.png') no-repeat left"/><br>
+					<div ng-show="errorMsg_show" class = "errorMsg">{{errorMsg}}</div>
+					<div ng-show="signin_show">
+						<input type="text" ng-model="email_signin" placeholder="Email or username" class="a" /><br>
+						<input type="password" ng-model="pwd_signin" placeholder="Password" class="a" /><br>
+						<input type="button" ng-model="signin_button" value="Sign in" class="btn btn-primary" id="b" ng-click="signin_main()"/><br>&nbsp;
+					</div>
+					<div ng-show="register_show">
+						<input type="text" ng-model="firstName" placeholder="First name" class="a" required/><br>
+						<p class="emsg">{{alert1}}</p><br>
+						<input type="text" ng-model="lastName" placeholder="Last name" class="a" required/><br>
+						<p class="emsg">{{alert2}}</p><br>
+						<input type="text" ng-model="email_reg" placeholder="Email or username" class="a" required/><br>
+						<p class="emsg">{{alert3}}</p><br>
+						<input type="password" ng-model="pwd_reg" placeholder="Password" class="a" required/><br>
+						<p class="emsg">{{alert4}}</p><br>
+						<input type="button" ng-model="register_button" value="Register" class="btn btn-primary" id="b" ng-click="register()"/><br>&nbsp;
+						 </div>
+				 </div>
+			</form>
+		</div>
+		</div>
+		</div>
+		<script type="text/javascript">
+		var app = angular.module('signinPageApp', []);
+		app.controller('signinPageCtrl', function($scope, $http, $window, $location) {
+				$scope.signin_show = true;
+				$scope.errorMsg_show = false;
+				$scope.s_tab = function(){
+					$scope.errorMsg_show = false;
+					window.alert("Signin now");
+		   		    $scope.signin_show = true;
+		   		    $scope.register_show =false;
+			};
+				$scope.r_tab = function(){	
+					$scope.errorMsg_show = false;
+					window.alert("Register");
+		   		    $scope.signin_show = false;
+		   		    $scope.register_show = true;
+		   			
+				};
+				$scope.register=function(){
+					var j=0;
+					if(($scope.firstName == null)|| ($scope.itemName == "" )){
+						$scope.alert1="Cannot be left blank";
+						j=j+1;
+					}
+					else{
+						$scope.alert1=null;
+					}
+					if(($scope.lastName == null)|| ($scope.lastName == "" )){
+						$scope.alert2="Cannot be left blank";
+						j=j+1;
+					}
+					else{
+						$scope.alert2=null;
+					}if(($scope.email_reg == null)|| ($scope.email_reg == "" )){
+						$scope.alert3="Cannot be left blank";
+						j=j+1;
+					}
+					else{
+						$scope.alert3=null;
+					}if(($scope.pwd_reg == null)|| ($scope.pwd_reg == "" )){
+						$scope.alert4="Cannot be left blank";
+						j=j+1;
+					}
+					else{
+						$scope.alert4=null;
+					}
+					
+					if(j==0){
+						$scope.data = {
+							 	first_name:$scope.firstName,
+					        	last_name:$scope.lastName,
+					   			email:$scope.email_reg,
+					   			password:$scope.pwd_reg
+					      };
+					 $http({
+							method : "POST",
+							url : '/reg_user',
+							data : $scope.data
+						}).success(function(data) {
+					        if(data == "successful"){
+					        	$window.alert("Registration Successful");
+					         	$scope.firstName = null,
+					        	$scope.lastName = null,
+					   			$scope.email_reg = null,
+					   			$scope.pwd_reg = null
+					        }
+					        else if(data == "exists"){
+					        	$window.alert("username already exists");
+					        }
+					        else{
+					        	console.log("Error on registration");
+					        }
+						}).error(function(error) {
+							console.log("Error");
+						});
+					}
+		};
+				
+			$scope.signin_main = function(){
+				alert($scope.email_signin + " " + $scope.pwd_signin);
+				
+				$scope.data_signin = {
+						email:$scope.email_signin,
+						pwd:$scope.pwd_signin
+					};
+					$http({
+						method : "POST",
+						url : '/signin_user',
+						data : $scope.data_signin ,
+					}).success(function(data1) {
+				        console.log('Data posted successfully');
+				        if(data1 == "successful"){
+				    		$window.location.href = "/homePage.html?user_name="+$scope.email_signin;
+				        }
+				        else{
+				   		    $scope.errorMsg_show = true;
+					        $scope.errorMsg = "Oops, that's not a match.";
+				        }
+					}).error(function(error1) {
+						console.log("Error");
+					});		
+				};
+		});
+		</script>
+		<style type="text/css">
+					.well{
+						text-align: center;
+					}
+					.form-group{
+						margin-top: 25px; 
+						text-align: center;
+					}
+					.a{
+						width: 420px;
+						margin: 7px;
+						height: 40px;
+						font-size:16.5px;
+						padding:7px;
+					}
+					#b{
+						width: 420px;
+						height: 40px;
+						font-size:16.5px;
+						font-weight: 25px;
+					}
+					#c{
+						width: 224px;
+						height: 40px;
+						border-style: none;
+						background: #F5F5F5;
+						color: #4169E1;
+					}
+					#c.active{
+						background-color: #FFFFFF;
+						color:F5F5F5;
+					}
+					.errorMsg{
+					color: #B22222 ;
+					float:left;
+					padding-left:40px;
+					padding-top:5px;
+					background: url('/images/exclamation.png') no-repeat 10px;;
+					}
+					.emsg{
+						color: #B22222 ;
+						font-size: 12px;
+					}
+		</style>
+	</body>
+</html>

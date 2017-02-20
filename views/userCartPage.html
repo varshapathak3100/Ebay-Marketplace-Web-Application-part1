@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="shortcut icon" href="/images/title.png" type="image/png">
+		<title>eBay | Your eBay Shopping Cart</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/stylesheets/header_style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="scripts/homePage.js"></script>
+		<script type="text/javascript" src="scripts/userCartPage.js"></script>
+	</head>	
+	</head>	
+	<body ng-app="userCartApp">
+		<div  ng-controller="userCartCtrl">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="well">					
+					<div style="float:left" class="b">Hi!&nbsp;
+					<span ng-model="sign_reg">
+					<a href="profile.html?user_name={{user_name}}"> {{user_name}} </a>&nbsp;!
+					</span>
+					<span ng-show=false>
+					</span>
+					&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;
+					<a href=""> Daily Deals </a> &nbsp;| &nbsp;<a href=""> Gift cards </a> &nbsp;| &nbsp;
+					<a href="sellPage_1.html?user_name={{user_name}}"> Sell </a> &nbsp;| &nbsp;
+					<a href="""> Help & Contact </a>
+					&nbsp;
+					</div>	
+					&nbsp;
+					<div style="float:right" class="c">
+					<a href="index.html" style="text-decoration:none"> Sign Out </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="" style="text-decoration:none"> My eBay </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href=""><img src="/images/bell.png" class="a"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="userCartPage.html?username={{user_name}}"><img src="/images/cart.png" class="a"></a></div>
+					<br>&nbsp;
+					</div>
+					<div>
+						<a href="homePage.html?username={{user_name}}"><img src="/images/logo.png" style="padding-left:75px"></a>
+						<button class="btn btn-default" style="background:transparent;border:none"><a href="" style=";color:inherit">
+						Shop by<br>category</a></button>
+						<input type="text" name="searchBar_main" placeholder="Search..."/ style="width:630px;height:45px;font-size:17px;padding-left:10px">
+						<select style="height:45px;font-size:17px;width:175px;font-size:12px">
+							<option>All Categories</option>
+							<option>Clothing</option>
+							<option>Accessories</option>
+							<option>Electronics</option>
+							<option>Furniture</option>		
+						</select>
+						<button class="btn btn-primary" style="height:45px;width:100px;font-size:16px;background-color:#3E5EA8">Search</button> &nbsp;&nbsp;
+						<a href="" style="text-decoration:none">Advanced</a>
+					</div>
+					<br><br>
+					<div style="margin-left:100px">
+					
+					<h1>Your eBay Shopping Cart</h1>
+					
+					
+					<div class="alert alert-success" id="suc" style="{{suc}}" >
+							{{deletemsg}}
+					</div>
+					
+					<div  style="background:#f5f5f5">
+						<table>
+							<tr ng-repeat="cartitem_detail in usercartitemDescription">
+		    					<td>
+		    					<div style="float:left;width:300px">
+		    					<img src ="/images/na_image.png" />
+		    					</div>
+		    					<div style="float:right;width:500px">
+			    					{{cartitem_detail.item_name}} -- {{cartitem_detail.item_desc}}
+			    					<br>
+			    					<h5> Seller : {{cartitem_detail.seller_info}} </h5>
+			    					<br>
+			    					<h5> Price: $ {{cartitem_detail.item_price}} </h5> 
+									<br>
+									<h5> Quantity - 
+			    					{{cartitem_detail.item_quantity}}
+			    					</h5>
+			    					<br><br>
+			    					<a href="buyitnowPage.html?item_id={{cartitem_detail.item_id}}&user_name={{user_name}}" class="btn btn-primary">Buy it now</a>
+			    					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    					<input type="button" value="Remove from Cart" class="btn btn-primary" ng-click="removeItem(cartitem_detail.item_id)">
+			    				</div>
+			    				<br><br>&nbsp;<br><br>
+			    				<hr>
+			    				<br><br>
+			    				</td>
+		    				</tr>
+						</table>
+					</div>
+					</div>
+					<style>
+								#suc{
+									width:600px;
+									margin-left:200px;
+									}
+					</style>
+					
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta charset="ISO-8859-1">
+		<title>eBay | My profile</title>
+		<link rel="shortcut icon" href="/images/title.png" type="image/png">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/stylesheets/header_style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="scripts/homePage.js"></script>
+		<script type="text/javascript" src="scripts/profilePage.js"></script>
+</head>
+<body ng-app="profilePageApp" style="background:#f5f5f5">
+		<div  ng-controller="profilePageCtrl">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="well">					
+					<div style="float:left" class="b">Hi!&nbsp;
+					<span ng-model="sign_reg">
+					<a href="profile.html?user_name={{user_name}}"> {{user_name}} </a>&nbsp;!
+					</span>
+					<span ng-show=false>
+					</span>
+					&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;
+					<a href=""> Daily Deals </a> &nbsp;| &nbsp;<a href=""> Gift cards </a> &nbsp;| &nbsp;
+					<a href="sellPage_1.html?user_name={{user_name}}"> Sell </a> &nbsp;| &nbsp;
+					<a href="""> Help & Contact </a>
+					&nbsp;
+					</div>	
+					&nbsp;
+					<div style="float:right" class="c">
+					<a href="index.html" style="text-decoration:none"> Sign Out </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="" style="text-decoration:none"> My eBay </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href=""><img src="/images/bell.png" class="a"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				    <a href="userCartPage.html?username={{user_name}}"><img src="/images/cart.png" class="a"></a></div>
+					<br>&nbsp;
+					</div>
+					<div>
+						<a href="homePage.html?username={{user_name}}"><img src="/images/logo.png" style="padding-left:75px"></a>
+						<button class="btn btn-default" style="background:transparent;border:none"><a href="" style=";color:inherit">
+						Shop by<br>category</a></button>
+						<input type="text" name="searchBar_main" placeholder="Search..."/ style="width:630px;height:45px;font-size:17px;padding-left:10px">
+						<select style="height:45px;font-size:17px;width:175px;font-size:12px">
+							<option>All Categories</option>
+							<option>Clothing</option>
+							<option>Accessories</option>
+							<option>Electronics</option>
+							<option>Furniture</option>		
+						</select>
+						<button class="btn btn-primary" style="height:45px;width:100px;font-size:16px;background-color:#3E5EA8">Search</button> &nbsp;&nbsp;
+						<a href="" style="text-decoration:none">Advanced</a>
+					</div>
+					<br><br>
+					<div style="background:#ffffff;margin-left:50px;width:1200px">
+					<br><br>
+					<div class="alert alert-success" id="suc" style="{{suc}}" >
+					     Congratulations ! Profile updated successfully.
+					</div>
+							<h3 style="margin-left:50px">{{user_name}} Profile</h3>
+							<form class="form-group" ng-repeat="user_details in userDetails" style="margin-left:50px">
+					<div style="{{fix_details}}">
+							<label>First Name</label><br>
+							<input type="text"   value="{{user_details.first_name}}" disabled/>
+							<br>
+							<label>	Last Name</label><br>
+							<input type="text" value="{{user_details.last_name}}" disabled/>
+							<br>
+							<label>Birthday</label><br>
+							<input type="text" value="{{user_details.birth_date}}" disabled/>
+							<br>
+							<label>Contact information</label><br> 
+							<input type="text" value="{{user_details.phone_number}}" disabled/>
+							<br>
+							<label>Location</label><br>
+							<input type="text" value="{{user_details.home_address}}" disabled/>
+							<br><br>
+							<input type="button" class="btn btn-primary" value="Edit Profile" ng-click="edit_profile()"/>
+					<br><br><br>
+					</div>
+					</form>
+					<form class="form-group" style="margin-left:50px">
+					<div style="{{edit_details}}">
+							<label>First Name</label><br>
+							<input type="text"   ng-model="fn" name="fn">
+							<br>
+							<label>	Last Name</label><br>
+							<input type="text"   ng-model="ln" name="ln">
+							<br>
+							<label>Birthday</label><br>
+							<input type="text"   ng-model="bd" name="bd" >
+							<br>
+							<label>Contact information</label><br> 
+							<input type="text"   ng-model="cn" name="cn">
+							<br>
+							<label>Location</label><br>
+							<input type="text"   ng-model="locat" name="locat">
+							<br><br>
+					<input type="button" class="btn btn-primary" value="Save" ng-click="save_profile()"/>
+					</div>
+
+					</form>
+					<br>
+					</div>
+		<style>
+			#suc{
+			width:400px;
+			margin-left:200px;
+			}
+		</style>
+</body>
+</html>

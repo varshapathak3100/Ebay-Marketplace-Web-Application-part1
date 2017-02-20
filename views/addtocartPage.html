@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="ISO-8859-1">
+		<title>eBay | Add to cart</title>
+		<link rel="shortcut icon" href="/images/title.png" type="image/png">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/stylesheets/header_style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="scripts/homePage.js"></script>
+		<script type="text/javascript" src="scripts/addtocartPage.js"></script>
+</head>
+	<body style="background:#f5f5f5" ng-app="addtocartApp">
+			<div  ng-controller="addtocartCtrl">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="well">					
+					<div style="float:left" class="b">Hi!&nbsp;
+					<span ng-model="sign_reg">
+					<a href="profile.html?user_name={{user_name}}"> {{user_name}} </a>&nbsp;!
+					</span>
+					<span ng-show=false>
+					</span>
+					&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;
+					<a href=""> Daily Deals </a> &nbsp;| &nbsp;<a href=""> Gift cards </a> &nbsp;| &nbsp;
+					<a href="sellPage_1.html?user_name={{user_name}}"> Sell </a> &nbsp;| &nbsp;
+					<a href="""> Help & Contact </a>
+					&nbsp;
+					</div>	
+					&nbsp;
+					<div style="float:right" class="c">
+					<a href="index.html" style="text-decoration:none"> Sign Out </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="" style="text-decoration:none"> My eBay </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href=""><img src="/images/bell.png" class="a"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="userCartPage.html?username={{user_name}}"><img src="/images/cart.png" class="a"></a></div>
+					<br>&nbsp;
+					</div>
+					<div>
+						<a href="homePage.html?username={{user_name}}"><img src="/images/logo.png" style="padding-left:75px"></a>
+						<button class="btn btn-default" style="background:transparent;border:none"><a href="" style=";color:inherit">
+						Shop by<br>category</a></button>
+						<input type="text" name="searchBar_main" placeholder="Search..."/ style="width:630px;height:45px;font-size:17px;padding-left:10px">
+						<select style="height:45px;font-size:17px;width:175px;font-size:12px">
+							<option>All Categories</option>
+							<option>Clothing</option>
+							<option>Accessories</option>
+							<option>Electronics</option>
+							<option>Furniture</option>		
+						</select>
+						<button class="btn btn-primary" style="height:45px;width:100px;font-size:16px;background-color:#3E5EA8">Search</button> &nbsp;&nbsp;
+						<a href="" style="text-decoration:none">Advanced</a>
+					</div>
+					<br><br>
+					<div class="alert alert-success" id="suc" style="{{suc}}" >
+					     Congratulations! Item successfully added to your cart
+					</div>
+					
+					<br><br>
+					<div style="float:left">
+					<img src = "/images/na_image.png" style="float:left;width:350px;height:300px;background-color:#ffffff"/>
+			    					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    				</div>
+    					<div  style="width:400px;background:#f5f5f5;float:right;margin-right:500px;">
+						<table>
+							<tr ng-repeat="cartitem_detail in cartitemDescription">
+		    					<td>
+			    					{{cartitem_detail.item_name}} -- {{cartitem_detail.item_desc}}
+			    					<br>
+			    					<h5> Seller : {{cartitem_detail.seller_info}} </h5>
+			    					<br>
+			    					<h5> Price: $ {{cartitem_detail.item_price}} </h5> 
+									<br>
+									<h5> Quantity - 
+			    					{{cartitem_detail.item_quantity}} Available
+			    					</h5>
+			    					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    					<br>
+			    					<input type="button" class="btn btn-primary" ng-click="buyit()" value="Buy it Now"/>
+			    					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    					<br><br>
+			    					<input type="button" class="btn btn-primary" value="Add to Cart" ng-click="addtocartFinal()">
+		    					</td>
+		    				</tr>
+						</table>
+						<br>
+								<label>Quantity : </label>$
+			    					<input type="text" style="width:50px" ng-model="quantEntered" id="quantEntered">
+			    					<p class="alert_msg">{{errMsg}}</p>
+			    					<p style="display:none">{{quant}}</p>
+					</div>
+			<br><br>
+		<style type="text/css">
+			.a{
+				width: 25px;
+				height: 25px;
+			}
+			.b{
+				padding-left :70px;
+				font-size: 13px;
+			}
+			.c{
+				padding-right :80px;
+				font-size: 13px;
+			}
+			.alert_msg{
+				color: #B22222 ;
+				font-size: 12px;
+			}
+			#suc{
+			width:600px;
+			margin-left:200px;
+			}
+		</style>
+</body>
+</html>
